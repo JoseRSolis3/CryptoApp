@@ -1,0 +1,10 @@
+{
+    "users": {
+        "jrsolis": {
+            "password": "1998d785bd72ec0c7457fdc6ed7ba9661b59e569015cefb732972684da289fed",
+            "role": "developer",
+            "strategies": [],
+            "goals": []
+        }
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "error":{
+        "registration":{
+            "user_exists" : "User already exists!" 
+        },
+
+        "login":{
+            "wrong_password": "Wrong password!",
+            "user_not_regirstered": "User not registered, would you like to register?"
+        }, 
+        "response":{
+            "blank_input": "Please enter a valid input"
+        }
+    },
+
+    "success":{
+        "registration":{
+            "user_registered": "Successfully registered!"
+        }
+    }
+}
