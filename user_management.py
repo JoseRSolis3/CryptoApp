@@ -77,12 +77,11 @@ def log_in(username, password, msg):
 
     password = hash_password(password)
 
-    if username not in existing_users:
-        registration_popup()
-        return True
-
     if not username:
         msgs["empty_input"]()
+        return True
+    elif username not in existing_users:
+        registration_popup()
         return True
     
     if password != data["users"][username]["password"]:
