@@ -5,6 +5,9 @@ import hashlib
 from message import messages
 from utils import read_json
 
+def open_path():
+    return Path("desktop_app_uasers.json")
+
 def on_login(username, password):
     user, pwd = getting_user_login(username, password)
     user_not_registered(user, pwd)
@@ -42,7 +45,7 @@ def create_file(path):
 #registers the user if they do not already exist
 def user_not_registered(username, password,msg):
     
-    path = Path("desktop_app_users.json")  
+    path = open_path()
 
     data = read_json(path) 
     existing_users = getting_data(data)    
@@ -58,8 +61,24 @@ def user_not_registered(username, password,msg):
     #if the user already exists in the JSON file
     if username in existing_users:
         msgs["user_exists"]()
-        print("user exists!")
         return True
     else:
         #Add the new user to the data an save it 
         adding_user(path, data, username, password)
+
+def log_in(username, password, msg):
+    path = open_path()
+
+    data = read_json(path)
+    
+    msgs = messages(msg)
+
+    password = hash_password(password)
+
+    if not username:
+        msgs["empty_input"]()
+        return True
+    
+    if password != data["users"][username]["password"]:
+        msgs["wrong_password"]()
+        return True
