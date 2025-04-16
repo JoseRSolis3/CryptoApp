@@ -57,6 +57,7 @@ def user_not_registered(username, password,msg):
     
     #if the user already exists in the JSON file
     if username in existing_users:
+        msgs["user_exists"]()
         print("user exists!")
         return True
     else:
