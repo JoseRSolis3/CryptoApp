@@ -17,15 +17,16 @@ def custom_popup(title, message, buttons):
     button_frame.pack()
 
     for text, command in buttons.items():
-        tk.Button(button_frame, text=text, command= lambda c=command: (c(), win.destroy())).pack()
+        tk.Button(button_frame, text=text, command= lambda c=command: (c(win), win.destroy())).pack(side=tk.LEFT)
 
 def registration_popup():
 
-    def on_yes():
+    def on_yes(win):
         print("pressed yes")
     
-    def on_no():
+    def on_no(win):
         print("pressed no")
+        win.destroy()
 
     t = "Registration"
     m = "User not found!\nWould you like to register?"
