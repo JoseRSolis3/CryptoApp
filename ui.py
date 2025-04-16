@@ -1,6 +1,6 @@
 import tkinter as tk
 from user_management import getting_user_login, user_not_registered
-from message import clear_msg
+from message import messages
 
 #sets up the main frame based on the root
 def framing(root):
@@ -42,7 +42,7 @@ def login_form(root):
         text="Login",
         command = lambda:(
             
-            clear_msg(frame),
+            messages(frame),
 
             #imported from user management, it gets the data from the tk.Entry
             getting_user_login(username, password),

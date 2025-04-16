@@ -2,7 +2,7 @@ import tkinter as tk
 import json
 from pathlib import Path
 import hashlib
-from message import empty_input, u_exists
+from message import messages
 from utils import read_json
 
 def on_login(username, password):
@@ -49,7 +49,7 @@ def user_not_registered(username, password, frame):
 
     #if username input is blank
     if not username:
-        empty_input(frame)
+        messages(frame)
         print("entry was blank!")
         return True
     
