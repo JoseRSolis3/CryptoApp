@@ -37,12 +37,14 @@ def login_form(root):
     username = username_entry(frame)
     password = password_entry(frame)
 
+    msgs = messages(frame)
+
     tk.Button(
         frame,
         text="Login",
         command = lambda:(
-            
-            messages(frame),
+
+            msgs["reset"](frame),
 
             #imported from user management, it gets the data from the tk.Entry
             getting_user_login(username, password),

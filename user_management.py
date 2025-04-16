@@ -47,15 +47,16 @@ def user_not_registered(username, password, frame):
     data = read_json(path)
     existing_users = getting_data(data)    
 
+    msgs = messages(frame)
+
     #if username input is blank
     if not username:
-        messages(frame)
+        msgs["empty_input"](frame)
         print("entry was blank!")
         return True
     
     #if the user already exists in the JSON file
     if username in existing_users:
-        u_exists(frame)
         print("user exists!")
         return True
     else:

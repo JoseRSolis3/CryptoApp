@@ -26,27 +26,32 @@ def get_style():
 def messages(frame):
 
     errors = error_msg()
-    
+
     msg = tk.Label(frame, text="")
     msg.pack()
 
     def empty_input(frame):
-        msg.config(text=errors["blank_input"](), **get_style()["error"])
+        msg.config(frame, text=errors["blank_input"](), **get_style()["error"])
         msg.pack()
         return msg
 
     def u_exists(frame):
-        msg.config(text=errors["user_exists"](), **get_style()["error"])
+        msg.config(frame, text=errors["user_exists"](), **get_style()["error"])
         msg.pack()
         return msg
 
     def wrong_pass(frame):
-        msg.config(text=errors["wrong_password"](), **get_style()["error"])
+        msg.config(frame, text=errors["wrong_password"](), **get_style()["error"])
         msg.pack()
         return msg
 
     def no_registration(frame):
-        msg.config(text=errors["not_registered"](), **get_style()["error"])
+        msg.config(frame, text=errors["not_registered"](), **get_style()["error"])
+        msg.pack()
+        return msg
+    
+    def reset(frame):
+        msg.config(frame, text="")
         msg.pack()
         return msg
     
@@ -55,5 +60,6 @@ def messages(frame):
         "user_exists": u_exists,
         "wrong_password": wrong_pass,
         "not_registered": no_registration,
+        "reset": reset,
         "widget": msg
     }
