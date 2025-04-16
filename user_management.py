@@ -3,10 +3,10 @@ import json
 from pathlib import Path
 import hashlib
 from message import messages
-from utils import read_json
+from utils import read_json, registration_popup
 
 def open_path():
-    return Path("desktop_app_uasers.json")
+    return Path("desktop_app_users.json")
 
 def on_login(username, password):
     user, pwd = getting_user_login(username, password)
@@ -63,6 +63,7 @@ def user_not_registered(username, password,msg):
         msgs["user_exists"]()
         return True
     else:
+        registration_popup()
         #Add the new user to the data an save it 
         adding_user(path, data, username, password)
 
@@ -70,10 +71,15 @@ def log_in(username, password, msg):
     path = open_path()
 
     data = read_json(path)
+    existing_users = getting_data(data)
     
     msgs = messages(msg)
 
     password = hash_password(password)
+
+    if username not in existing_users:
+        registration_popup()
+        return True
 
     if not username:
         msgs["empty_input"]()
@@ -82,3 +88,4 @@ def log_in(username, password, msg):
     if password != data["users"][username]["password"]:
         msgs["wrong_password"]()
         return True
+    
