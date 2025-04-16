@@ -37,20 +37,23 @@ def login_form(root):
     username = username_entry(frame)
     password = password_entry(frame)
 
-    msgs = messages(frame)
+    msg = tk.Label(text="")
+    msg.pack()
+
+    msgs = messages(msg)
 
     tk.Button(
         frame,
         text="Login",
         command = lambda:(
 
-            msgs["reset"](frame),
+            msgs["reset"](),
 
             #imported from user management, it gets the data from the tk.Entry
             getting_user_login(username, password),
 
             #checks if user is registered using JSON data (from user_management)
-            user_not_registered(*getting_user_login(username, password), frame)
+            user_not_registered(*getting_user_login(username, password), msg)
         )
     ).pack()
 # ---------------

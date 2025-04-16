@@ -40,19 +40,19 @@ def create_file(path):
         json.dump({"users": {}}, f, indent=4)
 
 #registers the user if they do not already exist
-def user_not_registered(username, password, frame):
+def user_not_registered(username, password,msg):
     
     path = Path("desktop_app_users.json")  
 
-    data = read_json(path)
+    data = read_json(path) 
     existing_users = getting_data(data)    
 
-    msgs = messages(frame)
+    msgs = messages(msg)
 
     #if username input is blank
     if not username:
-        msgs["empty_input"](frame)
-        print("entry was blank!")
+        msgs["empty_input"]()
+        print(msgs["empty_input"])
         return True
     
     #if the user already exists in the JSON file
