@@ -85,6 +85,12 @@ def registration_form(root):
             getting_user_login(username, password),
 
             #checks if user is registered using JSON data (from user_management)
-            log_in(*getting_user_login(username, password), msg)
+            log_in(*getting_user_login(username, password), msg, root)
         )
     ).pack()
+
+def user_menu(root):
+
+    frame = framing(root)
+
+    tk.Label(frame, text="Login Successful!").pack()

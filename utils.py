@@ -32,3 +32,7 @@ def registration_popup():
     m = "User not found!\nWould you like to register?"
 
     custom_popup(t, m, {"Yes": on_yes, "No": on_no})
+
+def clear_window(root):
+    for widget in root.winfor_children():
+        widget.destroy()

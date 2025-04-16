@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 import hashlib
 from message import messages
-from utils import read_json, registration_popup
+from utils import read_json, registration_popup, clear_window
 
 def open_path():
     return Path("desktop_app_users.json")
@@ -67,7 +67,7 @@ def user_not_registered(username, password,msg):
         #Add the new user to the data an save it 
         adding_user(path, data, username, password)
 
-def log_in(username, password, msg):
+def log_in(username, password, msg, root):
     path = open_path()
 
     data = read_json(path)
@@ -87,4 +87,10 @@ def log_in(username, password, msg):
     if password != data["users"][username]["password"]:
         msgs["wrong_password"]()
         return True
+    
+    if password == data["users"][username]["password"]:
+        clear_window(root)
+        return True
+
+
     
