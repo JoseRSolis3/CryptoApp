@@ -1,6 +1,6 @@
 import tkinter as tk
 from user_management import getting_user_login, log_in
-from message import messages
+from alerts.message import messages
 
 #sets up the main frame based on the root
 def framing(root):
@@ -28,7 +28,7 @@ def password_entry(frame):
 
 
 # MAIN MENU -----
-def login_form(root):
+def login_form(root, register_user):
 
     #builds the frame
     frame = framing(root)
@@ -55,7 +55,8 @@ def login_form(root):
             #checks if user is registered using JSON data (from user_management)
             log_in(*getting_user_login(username, password), msg, root),
 
-            user_menu(root)
+            if register_user == True:
+                
         )
     ).pack()
 # ---------------
@@ -84,7 +85,7 @@ def registration_form(root):
 
     tk.Button(
         frame,
-        text="Login",
+        text="Register",
         command = lambda:(
 
             msgs["reset"](),

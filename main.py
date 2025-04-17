@@ -1,5 +1,5 @@
 import tkinter as tk
-from ui import login_form
+from menus.ui import login_form
 
 #Designs the Window
 def app_window(root):

@@ -2,8 +2,10 @@ import tkinter as tk
 import json
 from pathlib import Path
 import hashlib
-from message import messages
-from utils import read_json, registration_popup, clear_window
+from alerts.message import messages
+from utils import read_json, registration_popup, clear_window, 
+
+
 
 def open_path():
     return Path("desktop_app_users.json")
@@ -62,7 +64,6 @@ def user_not_registered(username, password,msg):
         msgs["user_exists"]()
         return True
     else:
-        registration_popup()
         #Add the new user to the data an save it 
         adding_user(path, data, username, password)
 
@@ -84,7 +85,6 @@ def log_in(username, password, msg, root):
     #if the username doesnt exists, then activate the registration popup
     #**might change this to stay on the window instead of a popup
     elif username not in existing_users:
-        registration_popup()
         return True
     
     #if the password does not match the user, run the wrong_password error message
@@ -97,5 +97,8 @@ def log_in(username, password, msg, root):
         clear_window(root)
         return True
 
-
-    
+def user_switch():
+    return{
+        "register" : lambda: adding_user(),
+        "login" : lambda: login
+    }

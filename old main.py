@@ -1,5 +1,5 @@
 import tkinter as tk
-from ui import login_form, create_error_label
+from menus.ui import login_form, create_error_label
 
 def main():
 
