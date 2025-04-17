@@ -34,5 +34,5 @@ def registration_popup():
     custom_popup(t, m, {"Yes": on_yes, "No": on_no})
 
 def clear_window(root):
-    for widget in root.winfor_children():
+    for widget in root.winfo_children():
         widget.destroy()
