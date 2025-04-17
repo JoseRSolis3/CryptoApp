@@ -55,7 +55,6 @@ def user_not_registered(username, password,msg):
     #if username input is blank
     if not username:
         msgs["empty_input"]()
-        print(msgs["empty_input"])
         return True
     
     #if the user already exists in the JSON file
@@ -77,17 +76,23 @@ def log_in(username, password, msg, root):
 
     password = hash_password(password)
 
+    #if there is no input it runs the empty_input error message
     if not username:
         msgs["empty_input"]()
         return True
+    
+    #if the username doesnt exists, then activate the registration popup
+    #**might change this to stay on the window instead of a popup
     elif username not in existing_users:
         registration_popup()
         return True
     
+    #if the password does not match the user, run the wrong_password error message
     if password != data["users"][username]["password"]:
         msgs["wrong_password"]()
         return True
     
+    #if the password is correct, clear the window (personal user window builds in ui.py)
     if password == data["users"][username]["password"]:
         clear_window(root)
         return True
