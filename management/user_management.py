@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 import hashlib
 from alerts.message import messages
-from utils import read_json, registration_popup, clear_window, 
+from utilities.utils import read_json, clear_window
 
 
 
@@ -99,6 +99,5 @@ def log_in(username, password, msg, root):
 
 def user_switch():
     return{
-        "register" : lambda: adding_user(),
-        "login" : lambda: login
+        "register" : lambda: adding_user()
     }

@@ -1,7 +1,7 @@
 import tkinter as tk
 import json
 from pathlib import Path
-from utils import read_json
+from utilities.utils import read_json
 
 def error_msg():
     path = Path("messages.json")

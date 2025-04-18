@@ -1,5 +1,5 @@
 import tkinter as tk
-from user_management import getting_user_login, log_in
+from management.user_management import getting_user_login, log_in
 from alerts.message import messages
 
 #sets up the main frame based on the root
@@ -54,8 +54,6 @@ def login_form(root, register_user):
 
             #checks if user is registered using JSON data (from user_management)
             log_in(*getting_user_login(username, password), msg, root),
-
-            if register_user == True:
                 
         )
     ).pack()
