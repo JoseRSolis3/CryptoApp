@@ -12,3 +12,9 @@ def get_crypto_price(crypto="bitcoin", currency="usd"):
     formatted_price = "{:.20f}".format(price).rstrip('0').rstrip('.')
 
     return formatted_price
+
+
+crypto = "pepe"
+pepe = get_crypto_price(crypto)
+
+print(pepe)

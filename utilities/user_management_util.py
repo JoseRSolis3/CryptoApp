@@ -124,7 +124,7 @@ class SQL_users:
         return total
 
     def close(self):
-        self.conn.close()
+        self.conn.close() 
 
 db = SQL_users()
 
