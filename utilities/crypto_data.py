@@ -8,13 +8,6 @@ def get_crypto_price(crypto="bitcoin", currency="usd"):
     if crypto not in data:
         return "Error: crypto not in data"
 
-    price = data[crypto][currency]
-    formatted_price = "{:.20f}".format(price).rstrip('0').rstrip('.')
+    current_price = data[crypto][currency]
 
-    return formatted_price
-
-
-crypto = "pepe"
-pepe = get_crypto_price(crypto)
-
-print(pepe)
+    return current_price

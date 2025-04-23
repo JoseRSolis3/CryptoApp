@@ -1,6 +1,6 @@
 import sqlite3
 import os
-from api.crypto_data import get_crypto_price
+from utilities.crypto_data import get_crypto_price
 
 class user_crypto:
     def __init__(self, db_name, username):
@@ -36,8 +36,39 @@ class user_crypto:
         self.cur.execute(create_crypto_table)
         self.conn.commit()
 
-    def update_crypto_price(crypto, current_price):
-        get_crypto_price(crypto)
+    def create_user_data(self, crypto, current_shares):
+        
+        current_price = get_crypto_price(crypto)
+        share_value = current_price * current_shares
+
+        creating_user_port = """
+            INSERT INTO user_crypto(
+                crypto,
+                current_price,
+                current_shares,
+                share_value
+            )
+            VALUES(
+                ?,
+                ?,
+                ?,
+                ?
+            )
+        """
+        self.cur.execute(creating_user_port, (crypto, current_price, current_shares, share_value))
+        self.conn.commit()
+
+    def update_crypto_price(self, crypto):
+        #gets crypto name from button.
+        current_price = get_crypto_price(crypto)
+
+        updating_price = """
+            UPDATE user_crypto
+            SET current_price = ?
+            WHERE crypto = ?
+        """
+        self.cur.execute(updating_price, (current_price, crypto))
+        self.conn.commit()
 
     def close(self):
         self.conn.close()
