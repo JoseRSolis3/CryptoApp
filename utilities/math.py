@@ -3,6 +3,10 @@ from crypto_data import get_crypto_price
 current_price = get_crypto_price(crypto="pepe")
 current_shares = 5000000
 
+def alphabet_list():
+    alphabet = "abcdefghijklmnopqrstuvwxyz"
+    return list(alphabet)
+
 def percent_conv(percent):
     return percent / 100
 
@@ -63,16 +67,64 @@ def tenway_split(current_price, current_shares, buy):
     for i in range(1, 11):
         adjusted_price = price_adjust_by_percent(current_price, i, not buy)
         formatted_price = format_price(adjusted_price)
-        split_shares = int(round(ten_percent / adjusted_price))
-        result[f"10% at {formatted_price}"] = split_shares
+        split_price = int(round(ten_percent / adjusted_price))
+        result[f"10% at {formatted_price}"] = split_price
     return result
+
+def split(percentages, current_shares):
+    result = {}
+    i = 0
+    letters = alphabet_list()        
+    for percent in percentages:
+        percentage = percent_conv(percent) 
+        split_share = int(round(current_shares * percentage))
+        if f"{percent}.{letters[i]}%" in result:
+            i += 1
+            result[f"{percent}.{letters[i]}%"] = split_share
+        else:
+            result[f"{percent}.{letters[i]}%"] =  split_share
+            i = 0
+    return result
+
+def eighty_ten_ten(current_shares):
+    percentages = [80, 10, 10]
+    return split(percentages)
+
+
+def seventyfive_twentyfive_twentyfive(current_shares):
+    percentages = [75, 25, 25]
+    return split(percentages)
+
+def ninety_five_five(current_shares):
+    percentages = [90, 5, 5]
+    return split(percentages)
+
+def forty_thirty_thirty():
+    percentages = [40, 30, 30]
+    return split(percentages)
+
+def sixty_fourtens():
+    percentages = [60, 10, 10, 10, 10]
+    return split(percentages)
+
+def twothirty_twotwenty():
+    percentages = [30, 30, 20, 20]
+    return split(percentages)
+
+def three_way():
+    percentages = [33, 33, 33, 1]
+    return split(percentages)
+
+def sixty_thirty_ten():
+    percentages = [60, 30, 10]
+    return split(percentages)
+
+def seventyfive_fifteen_twofive():
+    percentages = [75, 15, 5, 5]
+    return split(percentages)
 
 def format_price(price):
     formatted_price = "{:.20f}".format(price).rstrip('0').rstrip('.')
     return formatted_price
 
-print(current_price)
-print(format_price(current_price))
-print(fourway_split(current_price, current_shares, buy=False))
-print(fifty_thirty_twenty(current_shares))
-print(sixty_twenty_ten_ten(current_shares))
+print(eighty_ten_ten(current_shares=100))
