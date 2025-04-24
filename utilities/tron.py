@@ -1,13 +1,24 @@
 import hashlib
 import os
+from argon2 import PasswordHasher
 
-password = "my_secret_password"
 
-salt = os.urandom(16)
+password = "MySecretPassword"
 
-password_salt = password.encode() + salt
+def super_tron(password):
+    ph = PasswordHasher(
+        time_cost = 4, #number of iterations
+        memory_cost = 65536, # per KB of memory
+        parallelism = 3 # number of threads
+    )
+    hashed = ph.hash(password)
 
-hashed_password = hashlib.sha256(password_salt).hexdigest()
+    try:
+        ph.verify(hashed, password)
+        print("Password Correct!")
+    except:
+        print("Incorrect Password!")
 
-print(f"Salt: {salt}")
-print(f"Hashed Password: {hashed_password}")
+    return hashed
+
+print(f"Hashed Password: {super_tron(password)}")
