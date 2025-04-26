@@ -72,7 +72,7 @@ class user_crypto:
 
     def update_shares(self, new_shares, crypto):
         formatted, price = get_crypto_price(crypto)
-        new_share_value = f"${round(new_shares * price, 2)}"
+        new_share_value = f"${new_shares * price:,.2f}"
         current_price = f"${formatted}"
 
         updating_shares = """
