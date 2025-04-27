@@ -1,9 +1,12 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QPushButton, QLineEdit
 
-title = "Crypto App"
-geometry = (100, 100, 500, 300)
-label_text = "This is a label"
+def variables():
+    title = "Crypto App"
+    geometry = (100, 100, 500, 300)
+    label_text = "This is a label"
+    button_text = ""
+    return title, geometry, label_text, button_text
 
 class Window:
     def __init__(self, title, geometry, label_text, button_text):
@@ -24,12 +27,18 @@ class Window:
         self.geometry = geometry
         self.app = self.create_app_obj()
         self.window = self.create_window()
-        self.layout = QVBoxLayout()        
+
+    def login_menu(self):
+        self.login_layout = self.win_layout()
+        
+        self.login_layout.addWidget()
 
     def create_app_obj(self):
         return QApplication(sys.argv)
     
-
+    def win_layout(self):
+        return QVBoxLayout()
+    
     def create_window(self):
         return QWidget()
 
@@ -60,7 +69,7 @@ class Window:
         entry = QLineEdit()
         self.layout.addWidget(entry)
 
-Window(title, geometry, label_text = None, button_text = None)
+Window(*variables())
 
 # TODO:
 # 1. Allow custom labels (already started)
