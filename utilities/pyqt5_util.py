@@ -72,9 +72,9 @@ class Window:
     
 class Font():
     def __init__(self):
-        self.default_font = font()
+       self.font = self.font_obj()
 
-    def font():
+    def font_obj(self):
         return QFont()
     
     def font_family(self, font_family):
@@ -82,18 +82,22 @@ class Font():
         return self
     
     def header_1(self):
-        self.font.setPointSize(30)
+        self.font.setPointSize(32)
         return self
     
     def header_2(self):
-        self.font.setPointSize(20)
+        self.font.setPointSize(24)
         return self
     
     def header_3(self):
-        self.font.setPointSize(10)
+        self.font.setPointSize(18)
         return self
 
     def normal_text(self):
+        self.font.setPointSize(14)
+        return self
+    
+    def caption(self):
         self.font.setPointSize(10)
         return self
         
