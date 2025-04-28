@@ -72,35 +72,39 @@ class Window:
     
 class Font():
     def __init__(self):
-       self.font = self.font_obj()
-
-    def font_obj(self):
-        return QFont()
+       self.font = QFont()
     
     def font_family(self, font_family):
         self.font.setFamily(font_family)
         return self
     
-    def header_1(self):
-        self.font.setPointSize(32)
+    def text_size(self, size):
+        if size == "h1":
+            self.font.setPointSize(32)
+        elif size == "h2": 
+            self.font.setPointSize(24)
+        elif size == "h3":
+            self.font.setPointSize(18)
+        elif size == "p":
+            self.font.setPointSize(14)
+        elif size == "small":
+            self.font.setPointSize(10)
+        else:
+            self.font.setPointSize(size)
         return self
     
-    def header_2(self):
-        self.font.setPointSize(24)
+    def style(self, style):
+        if style == "b":
+            self.font.setBold(True)
+        elif style == "i":
+            self.font.setItalic(True)
+        elif style == "u":
+            self.font.setUnderline(True)
+        elif style == "s":
+            self.font.setStrikeOut(True)
+        else:
+            pass
         return self
-    
-    def header_3(self):
-        self.font.setPointSize(18)
-        return self
-
-    def normal_text(self):
-        self.font.setPointSize(14)
-        return self
-    
-    def caption(self):
-        self.font.setPointSize(10)
-        return self
-        
 
 Window(*variables())
 

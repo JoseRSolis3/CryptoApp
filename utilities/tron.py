@@ -1,5 +1,3 @@
-import hashlib
-import os
 from argon2 import PasswordHasher
 
 
