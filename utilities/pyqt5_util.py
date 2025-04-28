@@ -1,5 +1,6 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QPushButton, QLineEdit
+from PyQt5.QtGui import QFont
 
 def variables():
     title = "Crypto App"
@@ -17,8 +18,6 @@ class Window:
 
         self.win_components(label_text, button_text)
 
-        self.window.setLayout(self.layout)
-
         self.window.show()
         sys.exit(self.app.exec_())
 
@@ -28,10 +27,15 @@ class Window:
         self.app = self.create_app_obj()
         self.window = self.create_window()
 
-    def login_menu(self):
+    def login_menu(self, title, geometry):
+        self.window_setup(title, geometry)
+
         self.login_layout = self.win_layout()
-        
-        self.login_layout.addWidget()
+        header = self.win_label(label_text = "This is a header")
+        user = self.win_label(label_text= "username")
+        self.login_layout.addWidget(header)
+
+        self.window.setLayout(self.login_layout)
 
     def create_app_obj(self):
         return QApplication(sys.argv)
@@ -58,16 +62,41 @@ class Window:
                 self.win_button(text)
 
     def win_label(self, label_text):
-        label = QLabel(label_text)
-        self.layout.addWidget(label)
+        return QLabel(label_text)
 
     def win_button(self, button_text):
-        button = QPushButton(button_text)
-        self.layout.addWidget(button)
+        return QPushButton(button_text)
     
     def win_entry(self):
-        entry = QLineEdit()
-        self.layout.addWidget(entry)
+        return QLineEdit()
+    
+class Font():
+    def __init__(self):
+        self.default_font = font()
+
+    def font():
+        return QFont()
+    
+    def font_family(self, font_family):
+        self.font.setFamily(font_family)
+        return self
+    
+    def header_1(self):
+        self.font.setPointSize(30)
+        return self
+    
+    def header_2(self):
+        self.font.setPointSize(20)
+        return self
+    
+    def header_3(self):
+        self.font.setPointSize(10)
+        return self
+
+    def normal_text(self):
+        self.font.setPointSize(10)
+        return self
+        
 
 Window(*variables())
 
